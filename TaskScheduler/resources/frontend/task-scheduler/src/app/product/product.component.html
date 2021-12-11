@@ -1,0 +1,54 @@
+<br>
+<div style="text-align: center;">
+    <button type="button" class="btn btn-primary" (click)="openModal(template)">Add Task</button>
+</div>
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Task Description</th>
+        <th scope="col">Date</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products; index as i">
+        <th scope="row">{{i+1}}</th>
+        <td>{{product.name}}</td>
+        <td>{{product.description}}</td>
+        <td>{{product.date}}</td>
+        <td>
+            <button type="button" class="btn btn-info" (click)="openModal(template,product)">Edit</button>
+            <button type="button" class="btn btn-danger" (click)="delete(product)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #template>
+      <div class="modal-header">
+          <h4 class="modal-title pull-left">{{modalTitle}}</h4>
+          <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+              <span aria-hidden="true" class="visually-hidden">&times;</span>
+          </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="name">Title</label>
+          <input type="text" class="form-control" placeholder="Enter Title" [formControl]="name">
+        </div>
+        <div class="form-group">
+          <label for="description">Task Description</label>
+          <input type="text" class="form-control" placeholder="Enter Task Description" [formControl]="description">
+        </div>
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" class="form-control" placeholder="Enter Date" [formControl]="price">
+        </div>
+        <button type="button" class="btn btn-primary" (click)="modalRef?.hide();save()">{{btnTitle}}</button>
+      </div>
+  </ng-template>
+

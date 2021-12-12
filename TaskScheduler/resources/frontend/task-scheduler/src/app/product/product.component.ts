@@ -18,7 +18,7 @@ export class ProductComponent implements OnInit {
   public btnTitle = '';
   public name = new FormControl('');
   public description = new FormControl('');
-  public price = new FormControl('');
+  public date = new FormControl('');
   modalRef?: BsModalRef;
 
   constructor(private service:ProductService,private modalService: BsModalService) { }
@@ -30,7 +30,7 @@ export class ProductComponent implements OnInit {
       this.selectProduct = product;
       this.name.setValue(product.name);
       this.description.setValue(product.description);
-      this.price.setValue(product.date);
+      this.date.setValue(product.date);
     }else {
       this.modalTitle = "Create New Task";
       this.btnTitle = "Save";
@@ -56,7 +56,7 @@ export class ProductComponent implements OnInit {
   save() {
     this.selectProduct.name = this.name.value;
     this.selectProduct.description = this.description.value;
-    this.selectProduct.date = this.price.value;
+    this.selectProduct.date = this.date.value;
 
     if(this.btnTitle == 'Update'){
       this.service.update(this.selectProduct)
@@ -74,7 +74,7 @@ export class ProductComponent implements OnInit {
   reset() {
     this.name.reset();
     this.description.reset();
-    this.price.reset();
+    this.date.reset();
   }
 
 }
